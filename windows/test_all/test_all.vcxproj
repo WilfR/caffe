@@ -83,6 +83,7 @@
     <ClCompile Include="..\..\src\caffe\test\test_caffe_main.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_common.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_concat_layer.cpp" />
+    <ClCompile Include="..\..\src\caffe\test\test_confusion_matrix.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_contrastive_loss_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_convolution_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_crop_layer.cpp" />
