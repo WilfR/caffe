@@ -1,0 +1,4 @@
+@echo on
+setlocal
+
+%CaffeHome\Build\x64\Release\caffe train --solver=%CaffeHome\examples\mrnnet\mrnnetQuickSolverGPU.pxt

@@ -1,0 +1,6 @@
+@echo off
+rem Usage: train <solver name>
+
+setlocal
+
+%CaffeHome\Build\x64\Debug\caffe train --solver=%1

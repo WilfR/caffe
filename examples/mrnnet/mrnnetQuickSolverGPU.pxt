@@ -1,0 +1,16 @@
+net: "mrnnetQuick.pxt"
+test_iter: 2000
+# carry out testing every test_interval training iterations
+test_interval: 10000
+base_lr: 0.01
+lr_policy: "step"
+gamma: 0.1
+# drop the learning rate after every stepsize iterations
+stepsize: 100000
+display: 2000
+max_iter: 1000000
+momentum: 0.9
+weight_decay: 0.0005
+snapshot: 100000
+snapshot_prefix: "log\\mrnnetQuickGPU.1000000"
+solver_mode: GPU

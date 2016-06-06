@@ -1,0 +1,11 @@
+@echo off
+setlocal
+
+set CaffeToolPath=%CaffeHome\Build\x64\Release
+set InputDB=E:\\home\\tools\\caffe\\examples\\mrnnet\\EqualAugmentedTrainLevelDB
+set OutputMeanImage=E:\\home\\tools\\caffe\\examples\\mrnnet\\EqualAugmentedMeanImage.bin
+
+
+%CaffeToolPath\compute_image_mean.exe -backend=leveldb %InputDB %OutputMeanImage
+
+echo Done.
