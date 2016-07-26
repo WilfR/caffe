@@ -1,0 +1,23 @@
+Results from mrtonn.exe :
+
+Read 18156 image files
+Wrote 93632 NNInput records
+Label	Count
+1	2088
+2	1688
+3	5296
+4	1152
+5	47488
+6	3616
+7	32304
+
+
+Results from CountByLabel.py
+
+1 : 2088
+2 : 1688
+3 : 5296
+4 : 1152
+5 : 47488
+6 : 3616
+7 : 32304

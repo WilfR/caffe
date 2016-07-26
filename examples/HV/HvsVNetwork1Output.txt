@@ -1,0 +1,347 @@
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+I0615 10:07:38.750342 53624 caffe.cpp:186] Using GPUs 0
+I0615 10:07:39.200548 53624 caffe.cpp:191] GPU 0: Quadro K2000D
+I0615 10:07:39.411350 53624 common.cpp:39] System entropy source not available, using fallback algorithm to generate seed instead.
+I0615 10:07:39.411350 53624 solver.cpp:48] Initializing solver from parameters: 
+test_iter: 1
+test_interval: 1000
+base_lr: 1
+display: 1000
+max_iter: 10000
+lr_policy: "step"
+gamma: 0.1
+momentum: 0.9
+weight_decay: 0.0005
+stepsize: 100000
+solver_mode: GPU
+device_id: 0
+net: "HvsVNetwork1.pxt"
+I0615 10:07:39.411350 53624 solver.cpp:91] Creating training net from net file: HvsVNetwork1.pxt
+I0615 10:07:39.411350 53624 net.cpp:313] The NetState phase (0) differed from the phase (1) specified by a rule in layer data
+I0615 10:07:39.411350 53624 net.cpp:49] Initializing net from parameters: 
+name: "HvsVNN"
+state {
+  phase: TRAIN
+}
+layer {
+  name: "data"
+  type: "Data"
+  top: "data"
+  top: "label"
+  include {
+    phase: TRAIN
+  }
+  data_param {
+    source: "HvsVLevelDB"
+    batch_size: 64
+    backend: LEVELDB
+  }
+}
+layer {
+  name: "flat"
+  type: "Flatten"
+  bottom: "data"
+  top: "flat"
+}
+layer {
+  name: "ip1"
+  type: "InnerProduct"
+  bottom: "flat"
+  top: "ip1"
+  inner_product_param {
+    num_output: 2
+  }
+}
+layer {
+  name: "accuracy"
+  type: "Accuracy"
+  bottom: "ip1"
+  bottom: "label"
+  top: "accuracy"
+}
+layer {
+  name: "loss"
+  type: "SoftmaxWithLoss"
+  bottom: "ip1"
+  bottom: "label"
+  top: "loss"
+}
+I0615 10:07:39.411350 53624 layer_factory.hpp:77] Creating layer data
+I0615 10:07:39.411350 53624 common.cpp:39] System entropy source not available, using fallback algorithm to generate seed instead.
+I0615 10:07:39.411350 53624 net.cpp:91] Creating Layer data
+I0615 10:07:39.411350 53624 net.cpp:399] data -> data
+I0615 10:07:39.411350 53624 net.cpp:399] data -> label
+I0615 10:07:39.411350 51516 common.cpp:39] System entropy source not available, using fallback algorithm to generate seed instead.
+I0615 10:07:39.426950 51516 db_leveldb.cpp:18] Opened leveldb HvsVLevelDB
+I0615 10:07:39.458150 53624 data_layer.cpp:41] output data size: 64,1,32,32
+I0615 10:07:39.458150 53624 net.cpp:141] Setting up data
+I0615 10:07:39.458150 53624 net.cpp:148] Top shape: 64 1 32 32 (65536)
+I0615 10:07:39.458150 53624 net.cpp:148] Top shape: 64 (64)
+I0615 10:07:39.458150 53624 net.cpp:156] Memory required for data: 262400
+I0615 10:07:39.458150 53624 layer_factory.hpp:77] Creating layer label_data_1_split
+I0615 10:07:39.458150 53624 net.cpp:91] Creating Layer label_data_1_split
+I0615 10:07:39.458150 53624 net.cpp:425] label_data_1_split <- label
+I0615 10:07:39.458150 53624 net.cpp:399] label_data_1_split -> label_data_1_split_0
+I0615 10:07:39.458150 53624 net.cpp:399] label_data_1_split -> label_data_1_split_1
+I0615 10:07:39.458150 53624 net.cpp:141] Setting up label_data_1_split
+I0615 10:07:39.458150 53624 net.cpp:148] Top shape: 64 (64)
+I0615 10:07:39.458150 53624 net.cpp:148] Top shape: 64 (64)
+I0615 10:07:39.458150 53624 net.cpp:156] Memory required for data: 262912
+I0615 10:07:39.458150 53624 layer_factory.hpp:77] Creating layer flat
+I0615 10:07:39.458150 53624 net.cpp:91] Creating Layer flat
+I0615 10:07:39.458150 53624 net.cpp:425] flat <- data
+I0615 10:07:39.458150 53624 net.cpp:399] flat -> flat
+I0615 10:07:39.458150 53624 net.cpp:141] Setting up flat
+I0615 10:07:39.458150 53624 net.cpp:148] Top shape: 64 1024 (65536)
+I0615 10:07:39.458150 53624 net.cpp:156] Memory required for data: 525056
+I0615 10:07:39.458150 53624 layer_factory.hpp:77] Creating layer ip1
+I0615 10:07:39.458150 53624 net.cpp:91] Creating Layer ip1
+I0615 10:07:39.458150 53624 net.cpp:425] ip1 <- flat
+I0615 10:07:39.458150 53624 net.cpp:399] ip1 -> ip1
+I0615 10:07:39.458150 53624 net.cpp:141] Setting up ip1
+I0615 10:07:39.458150 53624 net.cpp:148] Top shape: 64 2 (128)
+I0615 10:07:39.458150 53624 net.cpp:156] Memory required for data: 525568
+I0615 10:07:39.458150 53624 layer_factory.hpp:77] Creating layer ip1_ip1_0_split
+I0615 10:07:39.458150 53624 net.cpp:91] Creating Layer ip1_ip1_0_split
+I0615 10:07:39.458150 53624 net.cpp:425] ip1_ip1_0_split <- ip1
+I0615 10:07:39.458150 53624 net.cpp:399] ip1_ip1_0_split -> ip1_ip1_0_split_0
+I0615 10:07:39.458150 53624 net.cpp:399] ip1_ip1_0_split -> ip1_ip1_0_split_1
+I0615 10:07:39.458150 53624 net.cpp:141] Setting up ip1_ip1_0_split
+I0615 10:07:39.458150 53624 net.cpp:148] Top shape: 64 2 (128)
+I0615 10:07:39.458150 53624 net.cpp:148] Top shape: 64 2 (128)
+I0615 10:07:39.458150 53624 net.cpp:156] Memory required for data: 526592
+I0615 10:07:39.458150 53624 layer_factory.hpp:77] Creating layer accuracy
+I0615 10:07:39.458150 53624 net.cpp:91] Creating Layer accuracy
+I0615 10:07:39.458150 53624 net.cpp:425] accuracy <- ip1_ip1_0_split_0
+I0615 10:07:39.458150 53624 net.cpp:425] accuracy <- label_data_1_split_0
+I0615 10:07:39.458150 53624 net.cpp:399] accuracy -> accuracy
+I0615 10:07:39.458150 53624 net.cpp:141] Setting up accuracy
+I0615 10:07:39.458150 53624 net.cpp:148] Top shape: (1)
+I0615 10:07:39.458150 53624 net.cpp:156] Memory required for data: 526596
+I0615 10:07:39.458150 53624 layer_factory.hpp:77] Creating layer loss
+I0615 10:07:39.458150 53624 net.cpp:91] Creating Layer loss
+I0615 10:07:39.458150 53624 net.cpp:425] loss <- ip1_ip1_0_split_1
+I0615 10:07:39.458150 53624 net.cpp:425] loss <- label_data_1_split_1
+I0615 10:07:39.458150 53624 net.cpp:399] loss -> loss
+I0615 10:07:39.458150 53624 layer_factory.hpp:77] Creating layer loss
+I0615 10:07:39.458150 53624 net.cpp:141] Setting up loss
+I0615 10:07:39.458150 53624 net.cpp:148] Top shape: (1)
+I0615 10:07:39.458150 53624 net.cpp:151]     with loss weight 1
+I0615 10:07:39.458150 53624 net.cpp:156] Memory required for data: 526600
+I0615 10:07:39.458150 53624 net.cpp:217] loss needs backward computation.
+I0615 10:07:39.458150 53624 net.cpp:219] accuracy does not need backward computation.
+I0615 10:07:39.458150 53624 net.cpp:217] ip1_ip1_0_split needs backward computation.
+I0615 10:07:39.458150 53624 net.cpp:217] ip1 needs backward computation.
+I0615 10:07:39.458150 53624 net.cpp:219] flat does not need backward computation.
+I0615 10:07:39.458150 53624 net.cpp:219] label_data_1_split does not need backward computation.
+I0615 10:07:39.458150 53624 net.cpp:219] data does not need backward computation.
+I0615 10:07:39.458150 53624 net.cpp:261] This network produces output accuracy
+I0615 10:07:39.458150 53624 net.cpp:261] This network produces output loss
+I0615 10:07:39.458150 53624 net.cpp:274] Network initialization done.
+I0615 10:07:39.458150 53624 solver.cpp:181] Creating test net (#0) specified by net file: HvsVNetwork1.pxt
+I0615 10:07:39.458150 53624 net.cpp:313] The NetState phase (1) differed from the phase (0) specified by a rule in layer data
+I0615 10:07:39.458150 53624 net.cpp:49] Initializing net from parameters: 
+name: "HvsVNN"
+state {
+  phase: TEST
+}
+layer {
+  name: "data"
+  type: "Data"
+  top: "data"
+  top: "label"
+  include {
+    phase: TEST
+  }
+  data_param {
+    source: "HvsVLevelDBTest"
+    batch_size: 64
+    backend: LEVELDB
+  }
+}
+layer {
+  name: "flat"
+  type: "Flatten"
+  bottom: "data"
+  top: "flat"
+}
+layer {
+  name: "ip1"
+  type: "InnerProduct"
+  bottom: "flat"
+  top: "ip1"
+  inner_product_param {
+    num_output: 2
+  }
+}
+layer {
+  name: "accuracy"
+  type: "Accuracy"
+  bottom: "ip1"
+  bottom: "label"
+  top: "accuracy"
+}
+layer {
+  name: "loss"
+  type: "SoftmaxWithLoss"
+  bottom: "ip1"
+  bottom: "label"
+  top: "loss"
+}
+I0615 10:07:39.458150 53624 layer_factory.hpp:77] Creating layer data
+I0615 10:07:39.458150 54776 common.cpp:39] System entropy source not available, using fallback algorithm to generate seed instead.
+I0615 10:07:39.458150 53624 net.cpp:91] Creating Layer data
+I0615 10:07:39.458150 53624 net.cpp:399] data -> data
+I0615 10:07:39.458150 53624 net.cpp:399] data -> label
+I0615 10:07:39.458150 54600 common.cpp:39] System entropy source not available, using fallback algorithm to generate seed instead.
+I0615 10:07:39.473750 54600 db_leveldb.cpp:18] Opened leveldb HvsVLevelDBTest
+I0615 10:07:39.473750 53624 data_layer.cpp:41] output data size: 64,1,32,32
+I0615 10:07:39.473750 53624 net.cpp:141] Setting up data
+I0615 10:07:39.473750 53624 net.cpp:148] Top shape: 64 1 32 32 (65536)
+I0615 10:07:39.473750 53624 net.cpp:148] Top shape: 64 (64)
+I0615 10:07:39.473750 53624 net.cpp:156] Memory required for data: 262400
+I0615 10:07:39.473750 53624 layer_factory.hpp:77] Creating layer label_data_1_split
+I0615 10:07:39.473750 53624 net.cpp:91] Creating Layer label_data_1_split
+I0615 10:07:39.473750 53624 net.cpp:425] label_data_1_split <- label
+I0615 10:07:39.473750 53624 net.cpp:399] label_data_1_split -> label_data_1_split_0
+I0615 10:07:39.473750 53624 net.cpp:399] label_data_1_split -> label_data_1_split_1
+I0615 10:07:39.473750 53624 net.cpp:141] Setting up label_data_1_split
+I0615 10:07:39.473750 53624 net.cpp:148] Top shape: 64 (64)
+I0615 10:07:39.473750 53624 net.cpp:148] Top shape: 64 (64)
+I0615 10:07:39.473750 53624 net.cpp:156] Memory required for data: 262912
+I0615 10:07:39.473750 53624 layer_factory.hpp:77] Creating layer flat
+I0615 10:07:39.473750 53624 net.cpp:91] Creating Layer flat
+I0615 10:07:39.473750 53624 net.cpp:425] flat <- data
+I0615 10:07:39.473750 53624 net.cpp:399] flat -> flat
+I0615 10:07:39.473750 53624 net.cpp:141] Setting up flat
+I0615 10:07:39.473750 53624 net.cpp:148] Top shape: 64 1024 (65536)
+I0615 10:07:39.473750 53624 net.cpp:156] Memory required for data: 525056
+I0615 10:07:39.473750 53624 layer_factory.hpp:77] Creating layer ip1
+I0615 10:07:39.473750 53624 net.cpp:91] Creating Layer ip1
+I0615 10:07:39.473750 53624 net.cpp:425] ip1 <- flat
+I0615 10:07:39.473750 53624 net.cpp:399] ip1 -> ip1
+I0615 10:07:39.473750 53624 net.cpp:141] Setting up ip1
+I0615 10:07:39.473750 53624 net.cpp:148] Top shape: 64 2 (128)
+I0615 10:07:39.473750 53624 net.cpp:156] Memory required for data: 525568
+I0615 10:07:39.473750 53624 layer_factory.hpp:77] Creating layer ip1_ip1_0_split
+I0615 10:07:39.473750 53624 net.cpp:91] Creating Layer ip1_ip1_0_split
+I0615 10:07:39.473750 53624 net.cpp:425] ip1_ip1_0_split <- ip1
+I0615 10:07:39.473750 53624 net.cpp:399] ip1_ip1_0_split -> ip1_ip1_0_split_0
+I0615 10:07:39.473750 53624 net.cpp:399] ip1_ip1_0_split -> ip1_ip1_0_split_1
+I0615 10:07:39.473750 53624 net.cpp:141] Setting up ip1_ip1_0_split
+I0615 10:07:39.473750 53624 net.cpp:148] Top shape: 64 2 (128)
+I0615 10:07:39.473750 53624 net.cpp:148] Top shape: 64 2 (128)
+I0615 10:07:39.473750 53624 net.cpp:156] Memory required for data: 526592
+I0615 10:07:39.473750 53624 layer_factory.hpp:77] Creating layer accuracy
+I0615 10:07:39.473750 53624 net.cpp:91] Creating Layer accuracy
+I0615 10:07:39.473750 53624 net.cpp:425] accuracy <- ip1_ip1_0_split_0
+I0615 10:07:39.473750 53624 net.cpp:425] accuracy <- label_data_1_split_0
+I0615 10:07:39.473750 53624 net.cpp:399] accuracy -> accuracy
+I0615 10:07:39.473750 53624 net.cpp:141] Setting up accuracy
+I0615 10:07:39.473750 53624 net.cpp:148] Top shape: (1)
+I0615 10:07:39.473750 53624 net.cpp:156] Memory required for data: 526596
+I0615 10:07:39.473750 53624 layer_factory.hpp:77] Creating layer loss
+I0615 10:07:39.473750 53624 net.cpp:91] Creating Layer loss
+I0615 10:07:39.473750 53624 net.cpp:425] loss <- ip1_ip1_0_split_1
+I0615 10:07:39.473750 53624 net.cpp:425] loss <- label_data_1_split_1
+I0615 10:07:39.473750 53624 net.cpp:399] loss -> loss
+I0615 10:07:39.473750 53624 layer_factory.hpp:77] Creating layer loss
+I0615 10:07:39.473750 53624 net.cpp:141] Setting up loss
+I0615 10:07:39.473750 53624 net.cpp:148] Top shape: (1)
+I0615 10:07:39.473750 53624 net.cpp:151]     with loss weight 1
+I0615 10:07:39.473750 53624 net.cpp:156] Memory required for data: 526600
+I0615 10:07:39.473750 53624 net.cpp:217] loss needs backward computation.
+I0615 10:07:39.473750 53624 net.cpp:219] accuracy does not need backward computation.
+I0615 10:07:39.473750 53624 net.cpp:217] ip1_ip1_0_split needs backward computation.
+I0615 10:07:39.473750 53624 net.cpp:217] ip1 needs backward computation.
+I0615 10:07:39.473750 53624 net.cpp:219] flat does not need backward computation.
+I0615 10:07:39.473750 53624 net.cpp:219] label_data_1_split does not need backward computation.
+I0615 10:07:39.473750 53624 net.cpp:219] data does not need backward computation.
+I0615 10:07:39.473750 53624 net.cpp:261] This network produces output accuracy
+I0615 10:07:39.473750 53624 net.cpp:261] This network produces output loss
+I0615 10:07:39.473750 53624 net.cpp:274] Network initialization done.
+I0615 10:07:39.473750 53624 solver.cpp:60] Solver scaffolding done.
+I0615 10:07:39.473750 53624 caffe.cpp:220] Starting Optimization
+I0615 10:07:39.473750 53624 solver.cpp:279] Solving HvsVNN
+I0615 10:07:39.473750 53624 solver.cpp:280] Learning Rate Policy: step
+I0615 10:07:39.473750 53624 solver.cpp:337] Iteration 0, Testing net (#0)
+W0615 10:07:39.473750 53624 net.cpp:571] DEPRECATED: Forward(bottom, loss) will be removed in a future version. Use Forward(loss).
+I0615 10:07:39.473750 53624 blocking_queue.cpp:50] Data layer prefetch queue empty
+I0615 10:07:39.473750 53364 common.cpp:39] System entropy source not available, using fallback algorithm to generate seed instead.
+I0615 10:07:39.473750 53624 solver.cpp:424]     Test net output #0: accuracy = 0.5
+I0615 10:07:39.473750 53624 solver.cpp:424]     Test net output #1: loss = 0.693147 (* 1 = 0.693147 loss)
+I0615 10:07:39.473750 53624 solver.cpp:228] Iteration 0, loss = 0.693147
+I0615 10:07:39.473750 53624 solver.cpp:244]     Train net output #0: accuracy = 0.5
+I0615 10:07:39.473750 53624 solver.cpp:244]     Train net output #1: loss = 0.693147 (* 1 = 0.693147 loss)
+I0615 10:07:39.473750 53624 sgd_solver.cpp:106] Iteration 0, lr = 1
+I0615 10:07:40.564370 53624 solver.cpp:337] Iteration 1000, Testing net (#0)
+I0615 10:07:40.564370 53624 solver.cpp:424]     Test net output #0: accuracy = 0.5
+I0615 10:07:40.564370 53624 solver.cpp:424]     Test net output #1: loss = 42.3036 (* 1 = 42.3036 loss)
+I0615 10:07:40.564370 53624 solver.cpp:228] Iteration 1000, loss = 42.3036
+I0615 10:07:40.564370 53624 solver.cpp:244]     Train net output #0: accuracy = 0.140625
+I0615 10:07:40.564370 53624 solver.cpp:244]     Train net output #1: loss = 42.3036 (* 1 = 42.3036 loss)
+I0615 10:07:40.564370 53624 sgd_solver.cpp:106] Iteration 1000, lr = 1
+I0615 10:07:41.557586 53624 solver.cpp:337] Iteration 2000, Testing net (#0)
+I0615 10:07:41.557586 53624 solver.cpp:424]     Test net output #0: accuracy = 0.4375
+I0615 10:07:41.557586 53624 solver.cpp:424]     Test net output #1: loss = 42.3036 (* 1 = 42.3036 loss)
+I0615 10:07:41.557586 53624 solver.cpp:228] Iteration 2000, loss = 43.6683
+I0615 10:07:41.557586 53624 solver.cpp:244]     Train net output #0: accuracy = 0.046875
+I0615 10:07:41.557586 53624 solver.cpp:244]     Train net output #1: loss = 43.6683 (* 1 = 43.6683 loss)
+I0615 10:07:41.557586 53624 sgd_solver.cpp:106] Iteration 2000, lr = 1
+I0615 10:07:42.534801 53624 solver.cpp:337] Iteration 3000, Testing net (#0)
+I0615 10:07:42.534801 53624 solver.cpp:424]     Test net output #0: accuracy = 0.328125
+I0615 10:07:42.534801 53624 solver.cpp:424]     Test net output #1: loss = 43.6683 (* 1 = 43.6683 loss)
+I0615 10:07:42.534801 53624 solver.cpp:228] Iteration 3000, loss = 43.6683
+I0615 10:07:42.534801 53624 solver.cpp:244]     Train net output #0: accuracy = 0.171875
+I0615 10:07:42.534801 53624 solver.cpp:244]     Train net output #1: loss = 43.6683 (* 1 = 43.6683 loss)
+I0615 10:07:42.534801 53624 sgd_solver.cpp:106] Iteration 3000, lr = 1
+I0615 10:07:43.509416 53624 solver.cpp:337] Iteration 4000, Testing net (#0)
+I0615 10:07:43.509416 53624 solver.cpp:424]     Test net output #0: accuracy = 0.203125
+I0615 10:07:43.509416 53624 solver.cpp:424]     Test net output #1: loss = 43.6683 (* 1 = 43.6683 loss)
+I0615 10:07:43.509416 53624 solver.cpp:228] Iteration 4000, loss = 43.6683
+I0615 10:07:43.509416 53624 solver.cpp:244]     Train net output #0: accuracy = 0
+I0615 10:07:43.509416 53624 solver.cpp:244]     Train net output #1: loss = 43.6683 (* 1 = 43.6683 loss)
+I0615 10:07:43.509416 53624 sgd_solver.cpp:106] Iteration 4000, lr = 1
+I0615 10:07:44.467826 53624 solver.cpp:337] Iteration 5000, Testing net (#0)
+I0615 10:07:44.468827 53624 solver.cpp:424]     Test net output #0: accuracy = 0.171875
+I0615 10:07:44.468827 53624 solver.cpp:424]     Test net output #1: loss = 43.6683 (* 1 = 43.6683 loss)
+I0615 10:07:44.469826 53624 solver.cpp:228] Iteration 5000, loss = 43.6683
+I0615 10:07:44.469826 53624 solver.cpp:244]     Train net output #0: accuracy = 0.125
+I0615 10:07:44.469826 53624 solver.cpp:244]     Train net output #1: loss = 43.6683 (* 1 = 43.6683 loss)
+I0615 10:07:44.469826 53624 sgd_solver.cpp:106] Iteration 5000, lr = 1
+I0615 10:07:45.460649 53624 solver.cpp:337] Iteration 6000, Testing net (#0)
+I0615 10:07:45.460649 53624 solver.cpp:424]     Test net output #0: accuracy = 0.375
+I0615 10:07:45.460649 53624 solver.cpp:424]     Test net output #1: loss = 42.3036 (* 1 = 42.3036 loss)
+I0615 10:07:45.460649 53624 solver.cpp:228] Iteration 6000, loss = 42.3036
+I0615 10:07:45.460649 53624 solver.cpp:244]     Train net output #0: accuracy = 0.1875
+I0615 10:07:45.460649 53624 solver.cpp:244]     Train net output #1: loss = 42.3036 (* 1 = 42.3036 loss)
+I0615 10:07:45.460649 53624 sgd_solver.cpp:106] Iteration 6000, lr = 1
+I0615 10:07:46.453464 53624 solver.cpp:337] Iteration 7000, Testing net (#0)
+I0615 10:07:46.453464 53624 solver.cpp:424]     Test net output #0: accuracy = 0.46875
+I0615 10:07:46.453464 53624 solver.cpp:424]     Test net output #1: loss = 42.3036 (* 1 = 42.3036 loss)
+I0615 10:07:46.453464 53624 solver.cpp:228] Iteration 7000, loss = 43.6683
+I0615 10:07:46.453464 53624 solver.cpp:244]     Train net output #0: accuracy = 0
+I0615 10:07:46.453464 53624 solver.cpp:244]     Train net output #1: loss = 43.6683 (* 1 = 43.6683 loss)
+I0615 10:07:46.453464 53624 sgd_solver.cpp:106] Iteration 7000, lr = 1
+I0615 10:07:47.435678 53624 solver.cpp:337] Iteration 8000, Testing net (#0)
+I0615 10:07:47.435678 53624 solver.cpp:424]     Test net output #0: accuracy = 0.4375
+I0615 10:07:47.435678 53624 solver.cpp:424]     Test net output #1: loss = 42.3036 (* 1 = 42.3036 loss)
+I0615 10:07:47.435678 53624 solver.cpp:228] Iteration 8000, loss = 42.3036
+I0615 10:07:47.435678 53624 solver.cpp:244]     Train net output #0: accuracy = 0.5
+I0615 10:07:47.435678 53624 solver.cpp:244]     Train net output #1: loss = 42.3036 (* 1 = 42.3036 loss)
+I0615 10:07:47.435678 53624 sgd_solver.cpp:106] Iteration 8000, lr = 1
+I0615 10:07:48.399102 53624 solver.cpp:337] Iteration 9000, Testing net (#0)
+I0615 10:07:48.414702 53624 solver.cpp:424]     Test net output #0: accuracy = 0
+I0615 10:07:48.414702 53624 solver.cpp:424]     Test net output #1: loss = 43.6683 (* 1 = 43.6683 loss)
+I0615 10:07:48.414702 53624 solver.cpp:228] Iteration 9000, loss = 43.6683
+I0615 10:07:48.414702 53624 solver.cpp:244]     Train net output #0: accuracy = 0
+I0615 10:07:48.414702 53624 solver.cpp:244]     Train net output #1: loss = 43.6683 (* 1 = 43.6683 loss)
+I0615 10:07:48.414702 53624 sgd_solver.cpp:106] Iteration 9000, lr = 1
+I0615 10:07:49.383924 53624 solver.cpp:512] Snapshotting to binary proto file _iter_10000.caffemodel
+I0615 10:07:49.383924 53624 sgd_solver.cpp:273] Snapshotting solver state to binary proto file _iter_10000.solverstate
+I0615 10:07:49.383924 53624 solver.cpp:317] Iteration 10000, loss = 42.3036
+I0615 10:07:49.383924 53624 solver.cpp:337] Iteration 10000, Testing net (#0)
+I0615 10:07:49.383924 53624 solver.cpp:424]     Test net output #0: accuracy = 0.109375
+I0615 10:07:49.383924 53624 solver.cpp:424]     Test net output #1: loss = 42.3036 (* 1 = 42.3036 loss)
+I0615 10:07:49.383924 53624 solver.cpp:322] Optimization Done.
+I0615 10:07:49.383924 53624 caffe.cpp:223] Optimization Done.

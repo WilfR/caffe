@@ -1,0 +1,2 @@
+E:\home\tools\caffe\examples\examples\hdf5_classification\data\train.h5
+E:\home\tools\caffe\examples\examples\hdf5_classification\data\train.h5

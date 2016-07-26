@@ -1,0 +1,95 @@
+Solvers
+caffe.AdaDeltaSolver
+caffe.AdaGradSolver
+caffe.AdamSolver
+caffe.NesterovSolver
+caffe.RMSPropSolver
+caffe.SGDSolver
+
+
+Set processing device and mode
+caffe.set_device
+<function caffe._caffe.set_device>
+
+caffe.set_mode_gpu
+<function caffe._caffe.set_mode_gpu>
+
+caffe.set_mode_cpu
+<function caffe._caffe.set_mode_cpu>
+
+Symbolic constants (enums) to identify different phases
+caffe.TRAIN
+caffe.TEST
+
+
+caffe.Net (caffe._caffe.Net)
+caffe.Net.backward
+<unbound method Net._Net_backward>
+
+caffe.Net.forward_all
+caffe.Net.reshape
+caffe.Net.blob_loss_weights
+caffe.Net.forward_backward_all
+caffe.Net.save
+caffe.Net.blobs
+caffe.Net.inputs
+caffe.Net.set_input_arrays
+caffe.Net.bottom_names
+caffe.Net.layers
+caffe.Net.share_with
+caffe.Net.copy_from
+caffe.Net.outputs
+caffe.Net.top_names
+caffe.Net.forward
+caffe.Net.params
+
+caffe.Classifier
+caffe.classifier.Classifier
+
+caffe.Detector
+caffe.detector.Detector
+
+caffe.Layer
+caffe._caffe.Layer
+
+caffe.NetSpec
+caffe.net_spec.NetSpec
+
+
+
+caffe.get_solver
+<function caffe._caffe.get_solver>
+
+
+caffe.layer_type_list
+<function caffe._caffe.layer_type_list>
+
+caffe.layers
+<caffe.net_spec.Layers at 0x2246ee80>
+
+
+caffe.params
+<caffe.net_spec.Parameters at 0x2246ee10>
+
+
+caffe.to_proto
+<function caffe.net_spec.to_proto>
+
+
+Modules
+%CaffePythonHome%=E:\Home\Anaconda\lib\site-packages\caffe
+
+caffe            %CaffePythonHome%\__init__.pyc
+
+caffe.classifier %CaffePythonHome%\classifier.pyc
+
+caffe.detector   %CaffePythonHome%\detector.pyc
+
+caffe.io         %CaffePythonHome%\io.pyc
+
+caffe.net_spec   %CaffePythonHome%\net_spec.pyc
+
+caffe.proto      %CaffePythonHome%\proto\__init__.pyc
+
+caffe.pycaffe    %CaffePythonHome%\pycaffe.pyc
+

@@ -1,0 +1,1 @@
+python ClassifyImage.py "%1&"

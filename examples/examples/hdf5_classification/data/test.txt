@@ -1,0 +1,1 @@
+E:\home\tools\caffe\examples\examples\hdf5_classification\data\test.h5

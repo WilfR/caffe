@@ -1,0 +1,13 @@
+@echo off
+setlocal
+
+set CaffeToolPath=%CaffeHome\Build\x64\Release
+rem set InputDB=E:\\home\\tools\\caffe\\examples\\mrnnet\\HvsVLevelDB
+rem set OutputMeanImage=E:\\home\\tools\\caffe\\examples\\mrnnet\\HvsVMeanImage.bin
+set InputDB=%1
+set OutputMeanImage=%2
+
+echo Executing ... %CaffeToolPath\compute_image_mean.exe -backend=leveldb %InputDB %OutputMeanImage
+%CaffeToolPath\compute_image_mean.exe -backend=leveldb %InputDB %OutputMeanImage
+
+echo Done.

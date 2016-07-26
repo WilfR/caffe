@@ -1,0 +1,22 @@
+net: "Convnet1.pxt"
+
+### max_iter = number of training batches
+### display = how many iterations between display of results
+
+max_iter: 100000
+display:  1000
+
+test_iter: 1
+test_interval: 10000
+
+base_lr:      1.0
+lr_policy:    "step"
+gamma:        0.1
+stepsize:     10000
+momentum:     0.9
+weight_decay: 0.0005
+
+
+snapshot: 10000
+snapshot_prefix: "snapshots\\Convnet1Depth20"
+solver_mode: GPU

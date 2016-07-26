@@ -45,7 +45,7 @@ void ConfusionMatrixLayer<Dtype>::Forward_cpu(
   int max_id = 0;
   int count = 0;
 
-  std::cerr << "--> Computing confusion matrix for new batch" << std::endl;
+  /// std::cerr << "--> Computing confusion matrix for new batch" << std::endl;
 
   for (int i = 0; i < outer_num_; ++i) {
     for (int j = 0; j < inner_num_; ++j) {
@@ -66,7 +66,7 @@ void ConfusionMatrixLayer<Dtype>::Forward_cpu(
       DCHECK_GE(predicted_class, 0);
       DCHECK_LT(predicted_class, num_classes_);
 
-	  std::cerr << "--> Conf Matrix i=" << i << " j=" << j << " label_value = " << label_value << " predicted_class = " << predicted_class << std::endl;
+///	  std::cerr << "--> Conf Matrix i=" << i << " j=" << j << " label_value = " << label_value << " predicted_class = " << predicted_class << std::endl;
 
       confusion_matrix_.mutable_cpu_data()[label_value * num_classes_
                                            + predicted_class] += 1;
@@ -75,19 +75,19 @@ void ConfusionMatrixLayer<Dtype>::Forward_cpu(
   }
 
 
-  std::cerr << std::endl << std::endl;
-  std::cerr << "--------------------- count=" << count << std::endl;
-  std::cerr << std::endl << std::endl; 
+  ////std::cerr << std::endl << std::endl;
+  ////std::cerr << "--------------------- count=" << count << std::endl;
+  ////std::cerr << std::endl << std::endl; 
 
-  for (int i = 0; i < num_classes_; i++)
-  {
-	  std::cerr << "CM[" << i << "]:"; 
-	  for (int j = 0; j < num_classes_; j++)
-	  {
-		  std::cerr << confusion_matrix_.cpu_data()[i*num_classes_ + j] << " \t";
-	  }
-	  std::cerr << std::endl; 
-  }
+  ////for (int i = 0; i < num_classes_; i++)
+  ////{
+	 //// std::cerr << "CM[" << i << "]:"; 
+	 //// for (int j = 0; j < num_classes_; j++)
+	 //// {
+		////  std::cerr << confusion_matrix_.cpu_data()[i*num_classes_ + j] << " \t";
+	 //// }
+	 //// std::cerr << std::endl; 
+  ////}
 
 
 

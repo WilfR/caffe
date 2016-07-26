@@ -1,0 +1,80 @@
+name: "HvsVNN"
+
+layer {
+  name: "data"
+  type: "Data"
+  top: "data"
+  top: "label"
+  include {
+    phase: TRAIN
+  }
+  data_param {
+    source: "Label01Shuffled"
+    batch_size: 64
+    backend: LEVELDB
+  }
+}
+
+layer {
+  name: "data"
+  type: "Data"
+  top: "data"
+  top: "label"
+  include {
+    phase: TEST
+  }
+  data_param {
+    source: "Label01Test"
+    batch_size: 64
+    backend: LEVELDB
+  }
+}
+
+
+layer {
+  name:   "flat",
+  type:   "Flatten",
+  bottom: "data",
+  top:    "flat"
+}
+
+
+layer {
+  name: "ip1"
+  type: "InnerProduct"
+  bottom: "flat"
+  top: "ip1"
+  inner_product_param {
+    num_output: 2
+  }
+}
+
+
+layer {
+  name: "accuracy"
+  type: "Accuracy"
+  bottom: "ip1"
+  bottom: "label"
+  top: "accuracy"
+}
+
+layer {
+   name: "confusion_matrix"
+   type: "ConfusionMatrix"
+   bottom: "ip1"
+   bottom: "label"
+   top: "confusion_matrix"
+}
+
+
+layer {
+  name: "loss"
+  type: "SoftmaxWithLoss"
+  bottom: "ip1"
+  bottom: "label"
+  top: "loss"
+}
+
+
+
+

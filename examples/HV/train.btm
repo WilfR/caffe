@@ -1,0 +1,7 @@
+@echo off
+rem Usage: train <solver name>
+
+setlocal
+
+rem %CaffeHome\Build\x64\Release\caffe train --solver=%CaffeHome\examples\mrnnet\mrnnetQuickSolver.pxt
+%CaffeHome\Build\x64\Release\caffe train --solver=%1

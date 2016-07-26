@@ -2,8 +2,8 @@ import leveldb
 from random import shuffle
 
 
-indb = leveldb.LevelDB('./AugmentedOriginalLevelDB')
-outdb = leveldb.LevelDB('./ShuffleAugmentedLevelDB')
+indb = leveldb.LevelDB('./HvsVLevelDB2')
+outdb = leveldb.LevelDB('./HvsVLevelDB2Shuffled')
 
 keys=[]
 for k,v in indb.RangeIter():

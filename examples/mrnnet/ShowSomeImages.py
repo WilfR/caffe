@@ -4,7 +4,7 @@ import leveldb
 import caffe
 import numpy as np
 from caffe.proto import caffe_pb2
-
+import wlrutil
 
 def labelToText(partLabel):
     if (partLabel < 0) or (partLabel >7 ) :
@@ -36,11 +36,15 @@ def showLabelledImages( labelledImages, nRows, nColumns ) :
     nImageNumber = 0
     for r in xrange(nRows):
         for c in xrange(nColumns):
-            image, label = labelledImages[ nImageNumber ]
+            ### image, label = labelledImages[ nImageNumber ]
+            labelledImage = labelledImages[ nImageNumber ]
+            label = labelledImage.label
+            image = labelledImage.image
+            ### label, image = labelledImages[ nImageNumber ]
             index = r*nColumns+c+1
             textLabel = labelToText( label )
             plt.subplot(nRows, nColumns, index)
-            plt.imshow( image[0,:,:], cmap=plt.cm.gray )
+            plt.imshow( image, cmap=plt.cm.gray )
             plt.axis('off')
             plt.title(textLabel)
             nImageNumber += 1
@@ -55,13 +59,15 @@ dbName = sys.argv[1]
 nRows=8
 nColumns=7
 nFirstRecordNumber=56*100
+nFirstRecordNumber=0
 nImages = nRows * nColumns
 
 
-db = leveldb.LevelDB(dbName)
+### db = leveldb.LevelDB(dbName)
 
 
-labelledImages = loadFromDB( db, nImages, nFirstRecordNumber )
+### labelledImages = loadFromDB( db, nImages, nFirstRecordNumber )
+labelledImages = wlrutil.GetRandomSelectionOfLabelledImages( dbName, nImages )
 showLabelledImages( labelledImages, nRows, nColumns )
 
 

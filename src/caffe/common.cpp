@@ -59,12 +59,12 @@ void initGlog() {
   now_time[16] = '-';
   LOG_INFO_FILE = FLAGS_log_dir + "INFO" + now_time + ".txt";
   google::SetLogDestination(google::GLOG_INFO, LOG_INFO_FILE.c_str());
-  LOG_WARNING_FILE = FLAGS_log_dir + "WARNING" + now_time + ".txt";
-  google::SetLogDestination(google::GLOG_WARNING, LOG_WARNING_FILE.c_str());
-  LOG_ERROR_FILE = FLAGS_log_dir + "ERROR" + now_time + ".txt";
-  google::SetLogDestination(google::GLOG_ERROR, LOG_ERROR_FILE.c_str());
-  LOG_FATAL_FILE = FLAGS_log_dir + "FATAL" + now_time + ".txt";
-  google::SetLogDestination(google::GLOG_FATAL, LOG_FATAL_FILE.c_str());
+//  LOG_WARNING_FILE = FLAGS_log_dir + "WARNING" + now_time + ".txt";
+//  google::SetLogDestination(google::GLOG_WARNING, LOG_WARNING_FILE.c_str());
+//  LOG_ERROR_FILE = FLAGS_log_dir + "ERROR" + now_time + ".txt";
+//  google::SetLogDestination(google::GLOG_ERROR, LOG_ERROR_FILE.c_str());
+//  LOG_FATAL_FILE = FLAGS_log_dir + "FATAL" + now_time + ".txt";
+//  google::SetLogDestination(google::GLOG_FATAL, LOG_FATAL_FILE.c_str());
 }
 
 void GlobalInit(int* pargc, char*** pargv) {
@@ -72,7 +72,7 @@ void GlobalInit(int* pargc, char*** pargv) {
   ::gflags::ParseCommandLineFlags(pargc, pargv, true);
   // Google logging.
   initGlog();
-  // ::google::InitGoogleLogging(*(pargv)[0]);
+  ::google::InitGoogleLogging(*(pargv)[0]);
   // Provide a backtrace on segfault.
 
   // Windows port of glogs doesn't have this function built

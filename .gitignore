@@ -85,6 +85,9 @@ docs/gathered
 _site
 doxygen
 docs/dev
+*.dot
+*.jpg
+
 
 # LevelDB files
 *.sst
